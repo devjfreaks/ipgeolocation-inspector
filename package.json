@@ -1,0 +1,87 @@
+{
+  "name": "ipgeolocation-inspector",
+  "displayName": "IPGeolocation Inspector",
+  "publisher": "ipgeolocation",
+  "description": "Inspect IP geolocation, network, security, and intelligence data directly inside VS Code using ipgeolocation.io",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "ip",
+    "geolocation",
+    "security",
+    "network",
+    "asn",
+    "abuse",
+    "ip intelligence",
+    "developer tools"
+  ],
+  "homepage": "https://ipgeolocation.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devjfreaks/ipgeolocation-inspector"
+  },
+  "bugs": {
+    "url": "https://github.com/devjfreaks/ipgeolocation-inspector/issues"
+  },
+  "activationEvents": [
+    "onCommand:ipgeolocation-inspector.inspect",
+    "onCommand:ipgeolocation-inspector.setApiKey",
+    "onCommand:ipgeolocation-inspector.inspectClipboard"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ipgeolocation-inspector.inspect",
+        "title": "IPGeolocation: Inspect IP"
+      },
+      {
+        "command": "ipgeolocation-inspector.setApiKey",
+        "title": "IPGeolocation: Set API Key"
+      },
+      {
+        "command": "ipgeolocation-inspector.inspectClipboard",
+        "title": "IPGeolocation: Inspect Clipboard"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ipgeolocation-inspector.inspect",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "IPGeolocation",
+      "properties": {
+        "ipgeolocation.include": {
+          "type": "string",
+          "default": "",
+          "description": "Additional API modules to include (e.g. hostname, dma, security, abuse, time_zone, user_agent). Availability depends on your ipgeolocation.io plan."
+        },
+        "ipgeolocation.fields": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of fields to include in the API response"
+        },
+        "ipgeolocation.excludes": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of fields to exclude from the API response"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
